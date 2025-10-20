@@ -1,0 +1,9 @@
+export const BASE_URL = process.env.BASE_URL || 'http://localhost:4000';
+export const QR_SIZE = parseInt(process.env.QR_SIZE || '300', 10);
+export const PROVIDER = process.env.PROVIDER || 'groq';
+export const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
+export const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
+export const USE_REDIS = !!process.env.REDIS_URL;
+export const REDIS_URL = process.env.REDIS_URL || '';
+export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+export const GITHUB_USERNAME = process.env.GITHUB_USERNAME || '';
