@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">Here&#039;s an example of a small button in React Native:
+
+```jsx
+import React from &#039;react&#039;;
+import { View, Text, TouchableOpacity, StyleSheet } from &#039;react-native&#039;;
+
+const SmallButton = () =&gt; {
+  return (
+    &lt;TouchableOpacity style={styles.button} onPress={() =&gt; console.log(&#039;Button pressed&#039;)}&gt;
+      &lt;Text style={styles.buttonText}&gt;Click me!&lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: &#039;#007bff&#039;,
+    padding: 10,
+    borderRadius: 5,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+  },
+  buttonText: {
+    color: &#039;#ffffff&#039;,
+    fontSize: 16,
+  },
+});
+
+export default SmallButton;
+```
+
+In this code:
+
+*   We import the necessary components from `react-native`.
+*   We define a `SmallButton` component as a function component.
+*   Inside the component, we return a `TouchableOpacity` component, which is a touchable button.
+*   We style the button with `styles.button` and the text with `styles.buttonText`.
+*   We add an `onPress` event handler to log a message to the console when the button is pressed.
+*   We create a `styles` object using `StyleSheet.create()` to define the styles for the button and text.
+
+You can use this component in your app by importing it and rendering it in your JSX:
+
+```jsx
+import React from &#039;react&#039;;
+import SmallButton from &#039;./SmallButton&#039;;
+
+const App = () =&gt; {
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;SmallButton /&gt;
+    &lt;/View&gt;
+  );
+};
+```</pre>
+             </div></body></html>

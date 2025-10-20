@@ -1,31 +1,34 @@
+// src/Components/chatLayout/SplitLayout.jsx
 import React, { useState } from "react";
 import BaseChat from "../Chat/BaseChat";
 import EmulatorExpoQrpreview from "../Chat/Emulator.Expo.Qr.preview";
 
-const SplitLayout = () => {
+const SplitLayout = ({ onStartChat }) => {
   const [aiCode, setAiCode] = useState("");
   const [sessionInfo, setSessionInfo] = useState(null);
 
   return (
     <div
-      className={`transition-all duration-500 grid w-full ${
+      className={`transition-all duration-500 w-full px-4 sm:px-6 py-4 grid ${
         sessionInfo ? "md:grid-cols-2 gap-6" : "grid-cols-1"
       }`}
     >
-      {/* Chat Section */}
+      {/* 💬 Chat Section */}
       <div className="flex flex-col w-full justify-between">
         <BaseChat
           onFirstPrompt={(generatedCode, createdSession) => {
+            // Called when user sends the first prompt
             setAiCode(generatedCode);
             setSessionInfo(createdSession);
+            if (onStartChat) onStartChat(); // 🔥 Notify parent to hide Hero
           }}
           sessionInfo={sessionInfo}
         />
       </div>
 
-      {/* Emulator Section */}
+      {/* 📱 Emulator Section */}
       {sessionInfo && (
-        <div className="flex flex-col items-center justify-center w-full max-h-[90vh] overflow-hidden rounded-2xl bg-[#0F0F0F]/70 backdrop-blur-md border border-gray-800 shadow-xl">
+        <div className="flex flex-col items-center justify-center w-full overflow-hidden rounded-2xl backdrop-blur-md">
           <EmulatorExpoQrpreview aiCode={aiCode} sessionInfo={sessionInfo} />
         </div>
       )}

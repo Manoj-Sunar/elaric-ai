@@ -1,22 +1,27 @@
 // src/pages/FrontIndex.jsx
-import React from 'react';
-import SplitLayout from '../components/chatLayout/SplitLayout';
+import React, { useState } from "react";
+import SplitLayout from "../Components/chatLayout/SplitLayout";
+import Hero from "../Components/Hero";
 
 const FrontIndex = () => {
-  return (
-    <div className="flex flex-col items-center   text-white">
-      <header className="w-full max-w-7xl px-6 ">
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-          Build native mobile apps, <span className="text-[#E47D2F]">fast</span>.
-        </h1>
-        <p className="mt-3 text-gray-400 max-w-xl">
-          Elaric builds complete, cross-platform mobile apps using AI and React Native.
-        </p>
-      </header>
+  const [hasStarted, setHasStarted] = useState(false); // ✅ Track if user has sent first prompt
 
-      <main className="w-full flex-1 px-6 pb-12">
+  return (
+    <div className="flex flex-col items-center text-white  transition-all duration-500">
+      {/* Hide Hero after first chat prompt */}
+      {!hasStarted && (
+        <div className="w-full transition-all duration-700">
+          <Hero />
+        </div>
+      )}
+
+      <main
+        className={`w-full px-6 pb-1 transition-all duration-500 ${
+          hasStarted ? "pt-4" : ""
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
-          <SplitLayout />
+          <SplitLayout onStartChat={() => setHasStarted(true)} />
         </div>
       </main>
     </div>

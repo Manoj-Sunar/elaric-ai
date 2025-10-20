@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">Here&#039;s a simple example of a React Native button:
+
+```jsx
+// Button.js
+import React from &#039;react&#039;;
+import { View, Text, TouchableOpacity, StyleSheet } from &#039;react-native&#039;;
+
+const Button = ({ title, onPress }) =&gt; {
+  return (
+    &lt;TouchableOpacity style={styles.button} onPress={onPress}&gt;
+      &lt;Text style={styles.buttonText}&gt;{title}&lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: &#039;#007bff&#039;,
+    padding: 12,
+    borderRadius: 6,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+  },
+  buttonText: {
+    color: &#039;#fff&#039;,
+    fontSize: 16,
+  },
+});
+
+export default Button;
+```
+
+You can use this button in your component like this:
+
+```jsx
+// App.js
+import React from &#039;react&#039;;
+import Button from &#039;./Button&#039;;
+
+const App = () =&gt; {
+  const handlePress = () =&gt; {
+    console.log(&#039;Button pressed!&#039;);
+  };
+
+  return (
+    &lt;View&gt;
+      &lt;Button title=&quot;Press me!&quot; onPress={handlePress} /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default App;
+```
+
+This code creates a blue button with white text that prints a message to the console when pressed. You can customize the styles and behavior of the button to suit your needs.</pre>
+             </div></body></html>

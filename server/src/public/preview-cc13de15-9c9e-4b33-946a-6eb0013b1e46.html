@@ -1,0 +1,72 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">Here&#039;s an example of a beautiful React Native button:
+
+```jsx
+// Button.js
+import React from &#039;react&#039;;
+import { View, Text, StyleSheet, TouchableOpacity } from &#039;react-native&#039;;
+
+const Button = ({ title, onPress }) =&gt; {
+  return (
+    &lt;TouchableOpacity
+      style={styles.button}
+      onPress={onPress}
+    &gt;
+      &lt;Text style={styles.text}&gt;{title}&lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: &#039;#4CAF50&#039;,
+    padding: 15,
+    borderRadius: 5,
+    shadowColor: &#039;#000&#039;,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 2,
+    width: &#039;100%&#039;,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+  },
+  text: {
+    color: &#039;#fff&#039;,
+    fontSize: 18,
+    fontWeight: &#039;bold&#039;,
+  },
+});
+
+export default Button;
+```
+
+In this example, we&#039;re creating a reusable `Button` component that can be used throughout our app. The button is created using a `TouchableOpacity` component, which is a touchable component that handles the press event. The button&#039;s styling is defined using the `styles` object, which is a common pattern in React Native.
+
+You can use this button in your app like this:
+
+```jsx
+// App.js
+import React from &#039;react&#039;;
+import Button from &#039;./Button&#039;;
+
+const App = () =&gt; {
+  const handlePress = () =&gt; {
+    console.log(&#039;Button pressed!&#039;);
+  };
+
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;Button title=&quot;Click me!&quot; onPress={handlePress} /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default App;
+```
+
+This will render a beautiful button with the title &quot;Click me!&quot; that you can press to log a message to the console.
+
+To make the button even more beautiful, you can customize its styles and add animations, gradients, or other effects.</pre>
+             </div></body></html>

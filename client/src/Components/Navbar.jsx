@@ -7,7 +7,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
           <h1 className="text-lg font-semibold tracking-wide">
-            AI <span className="text-blue-500">Builder</span>
+            ELARIC <span className="text-blue-500">AI</span>
           </h1>
         </div>
 

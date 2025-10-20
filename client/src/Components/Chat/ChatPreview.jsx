@@ -5,7 +5,7 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const ChatPreview = ({ messages = [] }) => {
   return (
-    <div className="w-full h-full flex flex-col space-y-6 overflow-y-auto overflow-x-hidden px-1">
+    <div className="flex flex-col space-y-6 w-full overflow-visible">
       {messages.map((msg, i) => (
         <motion.div
           key={i}
@@ -20,7 +20,7 @@ const ChatPreview = ({ messages = [] }) => {
             className={`max-w-[90%] px-4 py-3 rounded-2xl text-sm sm:text-base leading-relaxed break-words ${
               msg.role === "user"
                 ? "bg-gray-800 text-gray-200 text-center rounded-full px-4"
-                : " text-gray-200"
+                : "text-gray-200  rounded-2xl"
             }`}
           >
             <RenderMessage content={msg.content} />
@@ -53,7 +53,7 @@ const RenderMessage = ({ content }) => {
         p.type === "code" ? (
           <div
             key={idx}
-            className="rounded-md overflow-hidden border border-gray-900 bg-[#0f0f0f] overflow-x-auto"
+            className="rounded-md bg-[#0f0f0f]/40 border border-gray-800   overflow-x-auto"
           >
             <SyntaxHighlighter
               language={p.lang}
@@ -63,7 +63,7 @@ const RenderMessage = ({ content }) => {
                 background: "transparent",
                 fontSize: "0.85rem",
                 padding: "1rem",
-                minWidth: "300px",
+                minWidth: "100%",
               }}
             >
               {p.code.trim()}

@@ -8,17 +8,36 @@ const BaseChat = ({ onFirstPrompt = () => {}, sessionInfo }) => {
   const [messages, setMessages] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
-  const chatEndRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+
+  // 🔽 Scroll to bottom
+  const scrollToBottom = (instant = false) => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: instant ? "auto" : "smooth",
+      });
+    }
+  };
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
+    scrollToBottom(true);
+  }, [messages.length]);
+
+  useEffect(() => {
+    if (loading) scrollToBottom();
+  }, [loading, messages]);
 
   const handlePromptSubmit = async (text) => {
     const userMsg = { role: "user", content: text };
     setMessages((prev) => [...prev, userMsg]);
     setPrompt("");
     setLoading(true);
+
+    // ⚡ Immediately create temporary session for emulator
+    const placeholderSession = await createSessionOnBackend("// Initializing preview...");
+    onFirstPrompt("// Initializing preview...", placeholderSession);
 
     try {
       const aiRes = await fetch(`${API_BASE}/api/ai/generate-text`, {
@@ -30,6 +49,7 @@ const BaseChat = ({ onFirstPrompt = () => {}, sessionInfo }) => {
       const aiJson = await aiRes.json();
       const aiResponse = aiJson.text || "No response from AI.";
 
+      // ✍️ Typing effect
       let typed = "";
       const speed = 15;
       for (let i = 0; i < aiResponse.length; i++) {
@@ -37,15 +57,19 @@ const BaseChat = ({ onFirstPrompt = () => {}, sessionInfo }) => {
         await new Promise((r) => setTimeout(r, speed));
         setMessages((prev) => {
           const updated = [...prev];
-          if (updated[updated.length - 1]?.role === "ai")
+          if (updated[updated.length - 1]?.role === "ai") {
             updated[updated.length - 1].content = typed;
-          else updated.push({ role: "ai", content: typed });
+          } else {
+            updated.push({ role: "ai", content: typed });
+          }
           return updated;
         });
+        scrollToBottom();
       }
 
-      const created = await createSessionOnBackend(aiResponse);
-      onFirstPrompt(aiResponse, created);
+      // ✅ Update backend session
+      const updatedSession = await createSessionOnBackend(aiResponse);
+      onFirstPrompt(aiResponse, updatedSession);
     } catch (err) {
       console.error("AI error:", err);
       setMessages((prev) => [
@@ -54,6 +78,7 @@ const BaseChat = ({ onFirstPrompt = () => {}, sessionInfo }) => {
       ]);
     } finally {
       setLoading(false);
+      scrollToBottom();
     }
   };
 
@@ -77,37 +102,62 @@ const BaseChat = ({ onFirstPrompt = () => {}, sessionInfo }) => {
     return res.json();
   };
 
-  return (
-    <div className="relative flex flex-col w-full h-[calc(100vh-2rem)]   overflow-hidden border border-gray-800">
-      {/* Scrollable Chat Area */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar px-4 pt-4 pb-50 space-y-4">
-        {messages.length > 0 ? (
-          <ChatPreview messages={messages} />
-        ) : (
-          <div className="text-gray-500 text-sm text-center mt-10">
-            Start by describing your app idea 👇
-          </div>
-        )}
-        {loading && (
-          <p className="text-gray-500 text-sm text-center animate-pulse">
-            ⏳ Thinking...
-          </p>
-        )}
-        <div ref={chatEndRef} />
-      </div>
+  const hasMessages = messages.length > 0;
 
-      {/* Sticky Text Input */}
-      <div className="absolute bottom-0 left-0 w-full bg-[#171717]/95 backdrop-blur-md border-t border-gray-800 py-4 px-4">
-        <div className="max-w-2xl mx-auto">
-          <TextInput
-            prompt={prompt}
-            setPrompt={setPrompt}
-            onSubmit={handlePromptSubmit}
-            placeholder="Describe your app or feature idea..."
-            disabled={loading}
-          />
+  return (
+    <div
+      className={`relative flex flex-col w-full transition-all duration-500  ${
+        hasMessages
+          ? "h-[calc(100vh-2rem)] bg-[#171717] rounded-2xl border border-gray-800 overflow-hidden"
+          : " bg-transparent p-2"
+      }`}
+    >
+      {/* Chat content - only visible after first send */}
+      {hasMessages && (
+        <div
+          ref={scrollContainerRef}
+          className="flex-1 overflow-y-auto px-4 pt-4 pb-28 space-y-4 custom-scrollbar"
+          style={{ scrollBehavior: "smooth" }}
+        >
+          <ChatPreview messages={messages} />
+
+          {loading && (
+            <p className="text-gray-500 text-sm text-center animate-pulse">
+              ⏳ Thinking...
+            </p>
+          )}
         </div>
-      </div>
+      )}
+
+      {/* Input Section */}
+      {hasMessages ? (
+        // 🧠 Fixed at bottom after first send
+        <div className="absolute bottom-0 left-0 w-full bg-[#171717]/95 backdrop-blur-md  px-4">
+          <div className="max-w-2xl mx-auto">
+            <TextInput
+              prompt={prompt}
+              setPrompt={setPrompt}
+              onSubmit={handlePromptSubmit}
+              placeholder="Describe your app or feature idea..."
+              disabled={loading}
+            />
+          </div>
+        </div>
+      ) : (
+        // 🎯 Centered input before first send
+        <div className="flex flex-col items-center justify-center  text-center px-4">
+          <div className="min-w-3xl w-full">
+            
+            <TextInput
+              prompt={prompt}
+              setPrompt={setPrompt}
+              onSubmit={handlePromptSubmit}
+              placeholder="Describe your app or feature idea..."
+              disabled={loading}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

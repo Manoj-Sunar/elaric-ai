@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden py-12 sm:py-20 ">
+    <section className="relative overflow-hidden p-4 ">
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-600/10 blur-3xl opacity-40" />
       <div className="container mx-auto px-4 md:px-8 relative text-center">
         <motion.h1

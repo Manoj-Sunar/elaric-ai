@@ -1,4 +1,3 @@
-// src/server.js
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -20,7 +19,7 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
   app.use(morgan('dev'));
 
-  // Serve public preview folder (static preview pages)
+  // serve preview files
   app.use('/public', express.static(path.join(__dirname, 'public')));
 
   app.use('/api/ai', aiRoutes);
@@ -28,25 +27,20 @@ export function createServer() {
 
   app.get('/health', (_, res) => res.json({ ok: true }));
 
-  // Create HTTP server and socket.io
   const server = http.createServer(app);
   const io = new Server(server, { cors: { origin: '*' } });
 
-  // Attach io to storage so storage.updateSession can emit
+  // attach socket reference to storage so storage.updateSession can emit
   storage.attachSocket(io);
 
   io.on('connection', (socket) => {
     console.log('Socket connected:', socket.id);
     socket.on('join', (roomId) => {
-      console.log('Socket join room', roomId);
       socket.join(roomId);
-    });
-    socket.on('disconnect', () => {
-      // console.log('Socket disconnected', socket.id);
     });
   });
 
-  // attach io to app for route controllers to use (if needed)
+  // allow routes to reach the io instance
   app.set('io', io);
 
   return server;

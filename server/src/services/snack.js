@@ -1,4 +1,3 @@
-// Creates a public gist and returns raw URL + snack embed URL
 import axios from 'axios';
 import { GITHUB_TOKEN, GITHUB_USERNAME } from '../config.js';
 
@@ -11,12 +10,10 @@ export async function createGist(files, description = 'AI generated snippet') {
 }
 
 export function rawGistUrl(gistData, filename) {
-  // raw URL pattern
-  // NOTE: GitHub sometimes uses different hostnames — this works in common cases
   return `https://gist.githubusercontent.com/${GITHUB_USERNAME}/${gistData.id}/raw/${filename}`;
 }
 
 export function makeSnackEmbedUrl(rawUrl) {
-  // Snack embed accepts sourceUrl pointing to raw JS file
+  // Expo Snack embed url; snack.expo.dev will load the raw App.js
   return `https://snack.expo.dev/embed?platform=android&sourceUrl=${encodeURIComponent(rawUrl)}`;
 }

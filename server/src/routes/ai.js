@@ -11,7 +11,7 @@ router.post('/generate-text', async (req, res) => {
     res.json({ text });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'ai_error', details: err.message });
+    res.status(500).json({ error: 'ai_error', details: err?.message || String(err) });
   }
 });
 

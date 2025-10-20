@@ -1,0 +1,60 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">**Button Component**
+```jsx
+import React from &#039;react&#039;;
+import { View, Text, TouchableOpacity } from &#039;react-native&#039;;
+
+const MyButton = () =&gt; {
+  const pressHandler = () =&gt; {
+    console.log(&#039;Button pressed!&#039;);
+  };
+
+  return (
+    &lt;TouchableOpacity
+      style={{
+        backgroundColor: &#039;#007bff&#039;,
+        padding: 10,
+        borderRadius: 5,
+        alignItems: &#039;center&#039;,
+        justifyContent: &#039;center&#039;,
+      }}
+      onPress={pressHandler}
+    &gt;
+      &lt;Text style={{ color: &#039;#fff&#039;, fontSize: 16 }}&gt;
+        Press me!
+      &lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+export default MyButton;
+```
+
+**Explanation**
+
+* We import the necessary components from `react-native`.
+* We define a `MyButton` component that returns a `TouchableOpacity`.
+* We define a `pressHandler` function that logs a message to the console when the button is pressed.
+* We style the button with a background color, padding, border radius, and text color.
+* We render a `Text` component with the button&#039;s text inside the `TouchableOpacity`.
+
+**Example Use Case**
+
+```jsx
+import React from &#039;react&#039;;
+import MyButton from &#039;./MyButton&#039;;
+
+const App = () =&gt; {
+  return (
+    &lt;View&gt;
+      &lt;MyButton /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default App;
+```
+
+This will render a small button with the text &quot;Press me!&quot; when the app is run.</pre>
+             </div></body></html>

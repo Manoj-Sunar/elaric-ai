@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">Here&#039;s an example of a React Native button:
+
+```jsx
+import React from &#039;react&#039;;
+import { View, Text, TouchableOpacity, StyleSheet } from &#039;react-native&#039;;
+
+const Button = () =&gt; {
+  return (
+    &lt;TouchableOpacity style={styles.button}&gt;
+      &lt;Text style={styles.buttonText}&gt;Click Me&lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: &#039;#4CAF50&#039;,
+    padding: 10,
+    borderRadius: 5,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+  },
+  buttonText: {
+    color: &#039;#fff&#039;,
+    fontSize: 16,
+  },
+});
+
+export default Button;
+```
+
+This code defines a reusable `Button` component that can be used throughout your app. The button has a green background, white text, and is centered.
+
+### Usage:
+
+To use this button in your app, simply import it and render it like this:
+
+```jsx
+import React from &#039;react&#039;;
+import Button from &#039;./Button&#039;;
+
+const App = () =&gt; {
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;Button /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default App;
+```
+
+You can customize the appearance of the button by modifying the styles in the `styles` object.
+
+### Props:
+
+You can pass props to the button to customize its behavior. For example, you can pass a `disabled` prop to disable the button:
+
+```jsx
+import React from &#039;react&#039;;
+import Button from &#039;./Button&#039;;
+
+const App = () =&gt; {
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;Button disabled={true} /&gt;
+    &lt;/View&gt;
+  );
+};
+```
+
+You can also pass a `onPress` prop to handle the press event:
+
+```jsx
+import React from &#039;react&#039;;
+import Button from &#039;./Button&#039;;
+
+const App = () =&gt; {
+  const handlePress = () =&gt; {
+    console.log(&#039;Button pressed!&#039;);
+  };
+
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;Button onPress={handlePress} /&gt;
+    &lt;/View&gt;
+  );
+};
+```</pre>
+             </div></body></html>

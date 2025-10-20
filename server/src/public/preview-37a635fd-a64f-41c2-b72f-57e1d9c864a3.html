@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">Here is an example of a basic React Native button component:
+
+```jsx
+import React from &#039;react&#039;;
+import { View, Text, TouchableOpacity, StyleSheet } from &#039;react-native&#039;;
+
+const Button = ({ onPress, title }) =&gt; {
+  return (
+    &lt;TouchableOpacity style={styles.button} onPress={onPress}&gt;
+      &lt;Text style={styles.text}&gt;{title}&lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: &#039;#007bff&#039;,
+    padding: 15,
+    borderRadius: 5,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+  },
+  text: {
+    color: &#039;#ffffff&#039;,
+    fontSize: 16,
+  },
+});
+
+export default Button;
+```
+
+You can use this button component in your React Native app like this:
+
+```jsx
+import React from &#039;react&#039;;
+import Button from &#039;./Button&#039;;
+
+const App = () =&gt; {
+  const handlePress = () =&gt; {
+    console.log(&#039;Button pressed!&#039;);
+  };
+
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;Button onPress={handlePress} title=&quot;Press me!&quot; /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default App;
+```
+
+This code creates a basic button with a blue background, white text, and a 5px border radius. When the button is pressed, it logs a message to the console.
+
+You can customize the styles and behavior of the button by modifying the `styles` object and the `Button` component&#039;s props.</pre>
+             </div></body></html>
