@@ -80,10 +80,15 @@ export default function EmulatorExpoQrpreview({ sessionInfo }) {
             </div>
           )}
 
-          <p className="mt-4 text-gray-400 text-center text-sm">Scan to open preview</p>
-          <a className="mt-3 text-blue-400 text-xs break-all" href={previewUrl} target="_blank" rel="noreferrer">
-            {previewUrl || "—"}
-          </a>
+          <div className="flex items-start justify-start flex-col">
+          <p className="mt-4 text-gray-300 text-center text-lg font-bold text-3xl">Scan QR code to test</p>
+             <p>To test on your device:</p>
+             <ol>
+              <li className="text-sm">1. Open Camera app</li>
+              <li className="text-sm">2. Scan the QR code above</li>
+             </ol>
+          </div>
+         
         </div>
       </div>
     </div>

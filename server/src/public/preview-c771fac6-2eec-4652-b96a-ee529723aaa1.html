@@ -1,0 +1,87 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body><div style="font-family:system-ui;padding:20px;color:#111;background:#fff;border-radius:8px">
+               <h2>AI Preview</h2>
+               <pre style="white-space:pre-wrap; font-family:monospace">Here&#039;s an example of a beautiful and attractive button using React Native:
+
+```jsx
+// Button.js
+import React from &#039;react&#039;;
+import { View, Text, TouchableOpacity } from &#039;react-native&#039;;
+import { Colors } from &#039;../styles/Colors&#039;;
+import { Fonts } from &#039;../styles/Fonts&#039;;
+
+const Button = ({ title, onPress, style, titleStyle }) =&gt; {
+  return (
+    &lt;TouchableOpacity
+      style={[
+        {
+          backgroundColor: Colors.primary,
+          borderRadius: 10,
+          paddingVertical: 15,
+          paddingHorizontal: 20,
+          elevation: 3,
+          flexDirection: &#039;row&#039;,
+          justifyContent: &#039;center&#039;,
+          alignItems: &#039;center&#039;,
+        },
+        style,
+      ]}
+      onPress={onPress}
+    &gt;
+      &lt;Text style={[Fonts.h5, { color: Colors.white, ...titleStyle }]}&gt;{title}&lt;/Text&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+export default Button;
+```
+
+And here&#039;s an example of how you can use the `Button` component in your app:
+
+```jsx
+// HomeScreen.js
+import React from &#039;react&#039;;
+import { View, Text } from &#039;react-native&#039;;
+import Button from &#039;./Button&#039;;
+
+const HomeScreen = () =&gt; {
+  const handlePress = () =&gt; {
+    console.log(&#039;Button pressed!&#039;);
+  };
+
+  return (
+    &lt;View style={{ flex: 1, justifyContent: &#039;center&#039;, alignItems: &#039;center&#039; }}&gt;
+      &lt;Button title=&quot;Press me!&quot; onPress={handlePress} /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default HomeScreen;
+```
+
+You can customize the styles and colors to fit your app&#039;s design.
+
+Here&#039;s an example of a styles file (`styles/Colors.js` and `styles/Fonts.js`):
+
+```jsx
+// styles/Colors.js
+export const Colors = {
+  primary: &#039;#4CAF50&#039;,
+  white: &#039;#FFFFFF&#039;,
+  gray: &#039;#F5F5F5&#039;,
+};
+```
+
+```jsx
+// styles/Fonts.js
+import { Font } from &#039;react-native&#039;;
+
+export const Fonts = {
+  h5: {
+    fontSize: 18,
+    fontWeight: &#039;bold&#039;,
+  },
+};
+```
+
+This is a basic example, and you can customize it as per your requirements. You can also add more styles, animations, and effects to make it more attractive.</pre>
+             </div></body></html>
